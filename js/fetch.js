@@ -179,6 +179,34 @@ Fetch = {
 		});
 	},
 	
+	put : (url) => {
+		return new Promise( (resolve, reject) => {
+			fetch(url, {
+				headers : {
+					'Content-Type' : 'application/json'
+				},
+				method: "PUT",
+				mode: "cors",
+			})
+			.then( res => {
+				if(res.status == 404){
+					window.location.href = "./404.html";
+				}
+				if(res.status == 401){
+					window.alert("UNAUTHORIZED!!! Try login later");
+					window.location.href = "./index.html";
+				} else if(res.status !== 200 && res.status !== 204 && res.status !== 203 && res.status != 202 && res.status != 201){
+					reject("Don't was possible to make this action");
+				} else{
+					resolve(res);
+				}
+			})
+			.catch(_ => {
+				alert("Server unavailable.");
+			});
+		});
+	},
+	
 	putAuth : (url, data) => {
 		const token = JSON.parse(localStorage.getItem("session")).token;
 		return new Promise( (resolve, reject) => {

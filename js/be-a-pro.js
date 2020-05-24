@@ -1,3 +1,13 @@
+
+const loadBeaPro = async () => {
+	let response = await Fetch.getAuth('http://localhost:9090/account');
+	if(response){
+		if(response.pro == 'True'){
+			window.location.href = "./be-a-pro-success.html";
+		}
+	}
+}
+
 window.Mercadopago.setPublishableKey("TEST-8d4d74ff-c2eb-4c00-8e93-eff108ba3de2");
 
 window.Mercadopago.getIdentificationTypes();

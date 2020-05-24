@@ -8,7 +8,7 @@
     <script type="text/javascript" src="./js/globalJS.js"></script>
     <title>Sign Up</title>
 </head>
-<body id="body">
+<body onload="verifyEmailWasAccept()" >
     <div id="header">
         <img id="logo" src="./assets/logo.png">
      </div>`
@@ -21,7 +21,7 @@
             <input type="password" name="password" placeholder="Password" required="required" />
             <input type="password" name="matchpassword" placeholder="Confirm your password" required="required" />
             <button type="submit" class="btn btn-primary btn-block btn-large">Let's go.</button>
-            <p>Have a account? <a href="home.html">Sign in</a></p>
+            <p>Have a account? <a href="./index.html">Sign in</a></p>
         </form>
     </div>
 	<script src="./js/fetch.js"></script>

@@ -1,6 +1,7 @@
 
 const sessionStore = {
-	"token" : null
+	"token" : null,
+	"userDataSignUp" : null
 }
 
 const init = () => {

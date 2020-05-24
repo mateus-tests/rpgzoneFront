@@ -1,21 +1,77 @@
 
-const signUp = () => {
+const verifyEmailWasAccept = () => {
+	
+	let session = JSON.parse(localStorage.getItem("session"));
+	if(session.userDataSignUp){
+		let query = window.location.search.slice(1);
+		let parts = query.split('&');
+		let data = {};
+		parts.forEach( part => {
+			let keyValue = part.split('=');
+			let key = keyValue[0];
+			let value = keyValue[1];
+			data[key] = value;
+		});
+		console.log(data.token == session.userDataSignUp.token);
+		if(data.token == session.userDataSignUp.token){
+			
+		}
+	}
+	console.log(session.userDataSignUp);
+}
+
+const uuid = () => {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (caractere) => {
+    let random = Math.random() * 16 | 0;
+	let value = caractere == 'x' ? random : (random & 0x3 | 0x8);
+    return value.toString(16);
+  });
+}
+
+const signUp = async () => {
 	if(inputIsValid()){
+		let session = JSON.parse(localStorage.getItem("session"));
 		const data = {
 			"password" : `${document.getElementsByName("password")[0].value}`,
 			"nickName" : `${document.getElementsByName("nickname")[0].value}`,
 			"email" : `${document.getElementsByName("email")[0].value}`,
-			"type" : "normal"
+			"type" : "normal",
+			"token" : uuid()
 		}
-		Fetch.post("http://localhost:9090/user", data)
-		.then( () => {
-			let session = JSON.parse(localStorage.getItem("session"));
-			session.token = null;
-			localStorage.setItem("session", JSON.stringify(session));
-			setTimeout( () => {
-				window.location.href = "./index.html";
-			}, 1000);
-		});
+		session.userDataSignUp = data;
+		localStorage.setItem("session", JSON.stringify(session));
+		const body = {
+			"token" : `${data.token}`,
+			"email" : `${data.email}` ,
+			"nickName" : `${data.nickName}`
+		}
+		let response = await Fetch.post("http://localhost:8585/email", body);//link do gitpod
+		if(response.status == 200){
+			window.alert('The email was sent successfully, see your inbox');
+			window.location.href = './index.html';
+		}
+		else{
+			window.alert('Error sending the e-mail');
+		}
+	}
+}
+
+const signUpApproved = async () => {
+	let session = JSON.parse(localStorage.getItem("session"));
+	const data = {
+		"email" : `${session.userDataSignUp.email}`,
+		"nickName" : `${session.userDataSignUp.nickName}`,
+		"password" : `${session.userDataSignUp.password}`,
+		"type" : `${session.userDataSignUp.type}`
+	}
+	let response = await Fetch.post("http://localhost:9090/user", data);
+	if(response){
+		session.token = null;
+		session.userDataSignUp = null;
+		localStorage.setItem("session", JSON.stringify(session));
+		setTimeout( () => {
+			window.location.href = "./index.html";
+		}, 1000);
 	}
 }
 
@@ -23,7 +79,7 @@ const inputIsValid = () => {
 	return document.getElementsByName("password")[0].value == document.getElementsByName("matchpassword")[0].value;
 }
 
-const signIn = () => {
+const signIn = async () => {
 	const session = JSON.parse( localStorage.getItem("session") );
 	const data = {
 		"password" : `${document.getElementsByName("password")[0].value}`,
@@ -34,8 +90,14 @@ const signIn = () => {
 		//resp.token já é o token
 		session.token = resp.token;//armazenando o token jwt para o usuário estar autenticado em requisições posteriores
 		localStorage.setItem("session", JSON.stringify(session));
-		setTimeout( () => {
-			window.location.href = "./be-a-pro-request.html";
+		setTimeout( async () => {
+			let response = await Fetch.getAuth('http://localhost:9090/account');
+			if(response){
+				if(response.pro == 'True'){
+					window.location.href = "./dashboard.html";
+				}
+				window.location.href = "./be-a-pro-request.html";
+			}
 		}, 1000);
 	})
 	.catch(_ => {

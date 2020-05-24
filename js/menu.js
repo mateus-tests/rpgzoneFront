@@ -26,7 +26,7 @@ const logOut = () => {
 	let session = JSON.parse( localStorage.getItem("session") );
 	session.token = "";
 	localStorage.setItem('session', JSON.stringify(session));
-	window.location.href = './home.html';
+	window.location.href = './index.html';
 }
   
 function injectMenu(){
@@ -40,13 +40,13 @@ function injectMenu(){
 	<div class="menu">
 		<a href="#" class="menu-close">&times;</a>
 		<ul>
-			<li><i class="fas fa-tachometer-alt"></i><a href="../html/dashboard.html" > DashBoard</a></li>
-			<li><i class="fas fa-user"></i><a href="../html/my-profile.html" > My Profile</a></li>
-			<li><i class="fas fa-home"></i><a href="../html/my-rooms.html" > My Rooms</a></li>
-			<li><i class="fas fa-cogs"></i><a href="../html/new-room.html" > New Room</a></li>
-			<li><i class="fas fa-users"></i><a href="../html/players-search.html" > Search Players</a></li>
-			<li><i class="fas fa-search"></i><a href="../html/room-search.html" > Search Rooms</a></li>
-			<li><i class="fas fa-bolt"></i><a href="../html/be-a-pro.html" > Be a PRO!</a></li>
+			<li><i class="fas fa-tachometer-alt"></i><a href="./dashboard.html" > DashBoard</a></li>
+			<li><i class="fas fa-user"></i><a href="./my-profile.html" > My Profile</a></li>
+			<li><i class="fas fa-home"></i><a href="./my-rooms.html" > My Rooms</a></li>
+			<li><i class="fas fa-cogs"></i><a href="./new-room.html" > New Room</a></li>
+			<li><i class="fas fa-users"></i><a href="./players-search.html" > Search Players</a></li>
+			<li><i class="fas fa-search"></i><a href="./room-search.html" > Search Rooms</a></li>
+			<li><i class="fas fa-bolt"></i><a href="./be-a-pro.html" > Be a PRO!</a></li>
 			<li><i class="fas fa-sign-out-alt"></i><a class="logout" href="#"> Log out</a></li>
 		</ul>
 	</div>

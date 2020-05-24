@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/signup.css">
+	<link rel="stylesheet" type="text/css" href="./css/global.css">
+    <script type="text/javascript" src="./js/globalJS.js"></script>
+    <title>Sign Up</title>
+</head>
+<body id="body">
+    <div id="header">
+        <img id="logo" src="./assets/logo.png">
+     </div>`
+    <span id="slogan">Start your travel with your friends!</span>
+    <div class="signup blur-purple-light">
+        <h1>Sign Up</h1>
+        <form onsubmit="event.preventDefault(); signUp()">
+            <input type="email" name="email" placeholder="E-mail" required="required" />
+            <input type="text" name="nickname" placeholder="Nickname" required="required" />
+            <input type="password" name="password" placeholder="Password" required="required" />
+            <input type="password" name="matchpassword" placeholder="Confirm your password" required="required" />
+            <button type="submit" class="btn btn-primary btn-block btn-large">Let's go.</button>
+            <p>Have a account? <a href="home.html">Sign in</a></p>
+        </form>
+    </div>
+	<script src="./js/fetch.js"></script>
+	<script src="./js/methods.js"></script>
+</body>
+</html>
+

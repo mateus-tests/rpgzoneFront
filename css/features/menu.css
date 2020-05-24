@@ -1,0 +1,79 @@
+.overlay {
+    height: 100vh;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.7);
+    opacity: 0;
+    transition: opacity 1s;
+    z-index: 249;
+    backdrop-filter: blur(8px);
+}
+.menu-open{
+    background: #900;
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 20px;
+    display: inline-block;
+    text-transform: uppercase;
+}
+.menu {
+    overflow: hidden;
+    background: rgba(52,23,45,.95);
+    padding: 40px 0 0 40px;
+    position: fixed;
+    top: 0;
+    right: -290px;
+    height: 100%;
+    z-index: 250;
+    transition: 0.5s;
+    width: 250px;
+    font-family: "Baloo Da 2";
+    backdrop-filter: blur(8px);
+}
+.menu ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    width: 500px;
+    height: 95%;
+    font-size: 18px;
+}
+.menu ul li a {
+    display: inline-block;
+    padding: 9px 4px 6px 12px;;
+    color: #ffa201;
+    transition: 0.3s;
+    text-decoration: none;
+}
+.menu ul li:hover {
+    padding: 2%;
+}
+.menu a.menu-close {
+    padding: 8px 0 4px 23px;
+    color: #6B6B6B;
+    display: block;
+    margin: -30px 0 -10px -20px;
+    font-size: 35px;
+    text-decoration: none;
+}
+.menu i{
+    width: 25px;
+}
+i.menu-open{
+    display: inline-block;
+    background: transparent;
+    padding: 1% 0 5px 0 1%;
+    float: right;
+    margin-top: -45px;
+    cursor: pointer;
+}
+.menu .fas::before{
+    background-image: linear-gradient(60deg, #ff5500, #faa647);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

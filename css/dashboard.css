@@ -1,0 +1,69 @@
+body { 
+    margin: 0px;
+    width: 100%;
+    height:100%;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );  
+}
+#dashboard{
+    margin-top: 50px;
+    padding: 2%;
+}
+
+.section{
+    padding: 10%;
+    background: rgba(90, 30, 70, 0.7);
+    backdrop-filter: blur(4px);
+    border-radius: 8px;
+    margin: 10px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,.5);
+    color: #fff;
+}
+.section p{
+    display: inline;
+    font-weight: bold;
+    color: #f97243;
+    opacity: 1;
+    z-index: 4;
+}
+.section-icon {
+    display: block;
+    text-align: center;
+    font-size: 40px;
+    color: #f97243;
+    border: solid 4px;
+    border-radius: 100%;
+    height: 40px;
+    width: 40px;
+    padding: 4%;
+    margin: auto;
+}
+i.section-icon {
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.dashboard {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+.col-1{
+    width: 20%;
+    height: 100%;
+    float: left;
+    z-index: 4;
+}
+.col-2{
+    width: 40%;
+    height: 100%;
+    float: left;
+    z-index: 4;
+}
+.col-3{
+    width: 40%;
+    height: 100%;
+    float: left;
+    z-index: 4;
+}

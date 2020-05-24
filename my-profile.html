@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link rel="stylesheet" type="text/css" href="./css/forms.css">
+    <link rel="stylesheet" type="text/css" href="./css/global.css">
+    <link rel="stylesheet" type="text/css" href="./css/buttons.css">
+    <link rel="stylesheet" type="text/css" href="./css/fontawesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="./css/features/menu.css">
+
+</head>
+<body onload="loadProfile()">
+    <div id="header">
+        <img id="logo" src="./assets/logo.png">
+        <i class="menu-open fas fa-bars"></i>
+    </div>
+
+    <!-- -------------------------- Menu lateral -------------------------------------------- -->
+
+    <div id="sidebar"></div>
+
+    <!-- ----------------------- Fim do Menu Lateral------------------------------------------ -->
+
+    <div id="profile">
+
+        <div class="dates blur-purple-dark" id="personal-dates">
+            <form class="dates-fields" onsubmit="event.preventDefault(); updateProfile()">
+
+                <div id="avatar">
+                    <h1>Edit Profile</h1>
+                    <img id="profile-picture" src="#" class="avatar img-circle" alt="avatar">
+                </div>
+
+                <div id="date-fields">
+
+                    <label>E-mail</label>
+                    <input type="email" name="email" placeholder="E-mail" value="email" required="required" /><br>
+
+                    <label>Nickname</label>
+                    <input type="text" name="nickname" placeholder="Nickname" value="nick" required="required" /><br>
+
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="Password" value="password" required="required" /><br>
+
+                    <label>Confirm your password</label>
+                    <input type="password" name="matchpassword" placeholder="Confirm your password" value="password" required="required" /><br>
+
+                    <label>Bio</label>
+                    <textarea class="bio" type="textarea" name="bio" placeholder="Talk more about you..." ></textarea>
+                </div>
+                <div class="buttons-field">
+                  <button onclick="location.href = './html/dashboard.html';" class="btn-no btn-no-primary btn-no-large">Cancel</button>
+                 <button type="submit" class="btn-yes btn-yes-primary btn-yes-large">Update</button>
+                </div>    
+            </form>
+        </div>
+
+
+    </div>
+
+</body>
+<script src="./js/fetch.js"></script>
+<script src="./js/userMethods.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="./js/menu.js"></script>
+<script type="text/javascript" src="./js/globalJS.js"></script>
+<script src="./js/setWallpaper.js"></script>
+
+</html>

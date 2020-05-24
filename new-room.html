@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>New Room</title>
+	<link rel="stylesheet" type="text/css" href="./css/newRoom.css">
+	<link rel="stylesheet" type="text/css" href="./css/forms.css">
+	<link rel="stylesheet" type="text/css" href="./css/global.css">
+	<link rel="stylesheet" type="text/css" href="./css/fontawesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="./css/features/menu.css">
+    <link rel="stylesheet" type="text/css" href="./css/features/buttons.css">
+	<link rel="stylesheet" type="text/css" href="./css/newRoom.css">
+</head>
+
+<body>
+	<div id="header">
+		<img id="logo" src="./assets/logo.png">
+		<i class="menu-open fas fa-bars"></i>
+	</div>
+
+	<!-- -------------------------- Menu lateral -------------------------------------------- -->
+	<div id="sidebar"></div>
+	<!-- ----------------------- Fim do Menu Lateral------------------------------------------ -->
+	<div id="new-room-form">
+	<div class="dates blur-purple-dark" id="new-room-dates">
+		<div class="section">
+			<h1>New Room</h1>
+			<form onsubmit="event.preventDefault(); createRoom()">
+			<div class="dates-fields" id="room-dates-fields">
+				<label>Nickname of Room</label>
+				<input type="text" name="room-nick" placeholder="Nick" required="required" />
+				<label>Room description</label>
+				<textarea class="room-description" type="textarea" name="room-description" placeholder="Talk more about your room..." ></textarea>
+			</div>
+				<div class="buttons-field">
+                    <button onclick="location.href = './html/dashboard.html';" class="btn-no btn-no-primary btn-no-large">Cancel</button>
+                    <button type="submit" class="btn-yes btn-yes-primary btn-yes-large">Create</button>
+                </div>
+			</form>
+		</div>
+	</div>
+	<div class="modal-container hidden-flex-container" id="background-pop-up" >
+		<div class="modal-content">
+			<div>
+				<h1>Do you really want to create a new room?</h1>
+			</div>
+			<div>
+				<form>
+					<button onclick="event.preventDefault(); closePopUp()" type="submit" class="btn-no btn-no-primary btn-no-large">Decline</button>
+					<button onclick="event.preventDefault(); redirectRoomConfig()" type="submit" class="btn-yes btn-yes-primary btn-yes-large">Accept</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="./js/fetch.js"></script>
+<script src="./js/methods.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="./js/menu.js"></script>
+<script src="./js/globalJS.js"></script>
+<script src="./js/setWallpaper.js"></script>
+
+</html>

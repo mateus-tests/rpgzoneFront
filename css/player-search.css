@@ -1,0 +1,28 @@
+.modaal-content-container{
+    background: rgba(90, 10, 63);
+    
+}
+.room {
+    text-align: center;
+    background: -webkit-linear-gradient(top, #ffa201, #ff5500);
+    padding: 5px;
+    border-radius: 8px;
+    padding: 2%;
+    margin:1%;
+}
+.room:hover{
+    background: -webkit-linear-gradient(top, #ff8001, #ff5500);
+}
+div.room-id-label {
+    float: left;
+    padding-right: 4%;
+    border-right: 1px solid #000;
+}
+div.room-nick-label{
+    float: right;
+    padding-left: 4%;
+    border-left: 1px solid #000;
+}
+.room-nick{
+    text-align: right;
+}

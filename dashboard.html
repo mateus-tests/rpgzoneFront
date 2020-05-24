@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>DashBoard</title>
+	<link rel="stylesheet" type="text/css" href="./css/dashboard.css">
+	<link rel="stylesheet" type="text/css" href="./css/global.css">
+	<link rel="stylesheet" type="text/css" href="./css/fontawesome/css/all.css">
+	<link rel="stylesheet" type="text/css" href="./css/features/menu.css">
+	<script src="./js/fetch.js"></script>
+	<script src="./js/userMethods.js"></script>
+</head>
+
+<body id="body" onload="loadUser()">
+	<div id="header">
+		<img id="logo" src="./assets/logo.png">
+		<i class="menu-open fas fa-bars"></i>
+	</div>
+
+	<!-- -------------------------- Menu lateral -------------------------------------------- -->
+	<div id="sidebar"></div>
+	<!-- ----------------------- Fim do Menu Lateral------------------------------------------ -->
+	<div class="dashboard" id="dashboard">
+		<!-- Column 1-->
+		<div class="col-1">
+			<!-- Sidebar-->
+			<div class="section blur-purple-dark" id="my-profile">
+				<i class="fas fa-user section-icon"></i>
+				<p id="nick-field" >My nick:</p>
+				<span id="my-nickname" name="my-nickname"></span><br>
+				<p id="id-field" >My ID:</p>
+				<span id="my-id" name="my-id"></span><br>
+				<p id="last-login-field" >My Last Login:</p>
+				<span id="my-last-login" name="my-last-login"></span><br>
+			</div>
+			<div class="section blur-purple-dark"  id="recent-rooms">
+				<i class="fas fa-home section-icon"></i>
+				<p>Rececent Room:</p>
+				<span id="recent-room-id" name="recent-room-id"></span><br>
+				<p>Next Session:</p>
+				<span id="recent-room-next-session" name="recent-room-next-session"></span><br>
+				<p id="total-players-field" >Total Players:</p>
+				<span id="recent-room-total-players" name="recent-room-total-players"></span><br>
+			</div>
+			<div class="section blur-purple-dark"  id="my-pro-states">
+				<i class="fas fa-star section-icon"></i>
+				<p id="pro-name-field" >Name:</p>
+				<span id="pro-name" name="pro-name"></span><br>
+				<p id="pro-last-name-field">Last Name:</p>
+				<span id="pro-last-name" name="pro-last-name"></span><br>
+				<p id="pro-state-field">PRO STATE:</p>
+				<span id="my-pro-state" name="my-pro-state"></span><br>
+			</div>
+		</div>
+		<!-- Column 2-->
+		<div class="col-2">
+			
+		</div>
+		<!-- Column 3-->
+		<div class="col-3"></div>
+	</div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="./js/menu.js"></script>
+<script src="./js/globalJS.js"></script>
+<script src="./js/setWallpaper.js"></script>
+</html>

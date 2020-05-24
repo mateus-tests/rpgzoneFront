@@ -1,0 +1,84 @@
+.switch{
+    margin:0 auto;
+    position:relative;
+}
+.switch input{
+    display:block;
+    width:100%;
+    height: 100%;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index: 10;
+    opacity: 0;
+    cursor: pointer;
+}
+.switch label{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border-radius: 10px;
+}
+.switch label:after{
+    content: "";
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    bottom: -2px;
+    left: -2px;
+     z-index: -1;
+     background: transparent;
+    border-radius: inherit;
+}
+.switch label span{
+    display: block;
+    width: 60%;
+    height: 100%;
+    background: #C0C0C0;
+    position: absolute;
+    z-index: 2;
+    right: 41%;
+    top: 0;
+    background: linear-gradient(#fd7530, #ff5500);
+    border-radius: inherit;
+  }
+  .switch label span:after {
+    content: "";
+    position: absolute;
+    left: 15%;
+    top: 25%;
+    width: 70%;
+    height: 50%;
+    background: transparent;
+    border-radius: inherit;
+  }
+  .switch label span:before {
+    content: "off";
+    position: absolute;
+    top: 50%;
+    margin-top: -10px;
+    right: -50%;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: #fff;
+   }
+   .switch input:checked ~ label {
+    background: #c47694;
+  }
+  .switch input:checked ~ label span{
+    right: -2px;
+  }
+  .switch input:checked ~ label span:before {
+    content: "on";
+    right: 115%;
+  }
+
+  /* MODELO SWITCH EM HTML
+              <div class="switch">
+                <input type="checkbox" name="option" id="option" />
+                <label for="option"><span></span></label>
+            </div>
+        */

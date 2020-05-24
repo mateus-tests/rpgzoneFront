@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Search Rooms</title>
+	<link rel="stylesheet" type="text/css" href="./css/forms.css">
+	<link rel="stylesheet" type="text/css" href="./css/search.css">
+	<link rel="stylesheet" type="text/css" href="./css/global.css">
+	<link rel="stylesheet" type="text/css" href="./css/fontawesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="./css/features/menu.css">
+	<link rel="stylesheet" type="text/css" href="./css/features/switch.css">
+	<link rel="stylesheet" type="text/css" href="./css/features/buttons.css">
+</head>
+
+<body style="background: #3c4246">
+	<div id="header">
+		<img id="logo" src="./assets/logo.png">
+		<i class="menu-open fas fa-bars"></i>
+	</div>
+
+	<!-- -------------------------- Menu lateral -------------------------------------------- -->
+	<div id="sidebar"></div>
+	<!-- ----------------------- Fim do Menu Lateral------------------------------------------ -->
+
+	<div class="section" id="game-search">
+		<h5>Search for Rooms!</h5>
+		<form id="search-form" onsubmit="event.preventDefault(); searchRooms();">
+			<input type="search" id="search" >
+			<button class="btn btn-primary btn-large" type="submit">Go!</button>
+		  </form>
+
+		  <h5>
+			  Apply Filters:
+		  </h5>
+		  <div id="filters">
+
+			<div class="option">
+			<span>Nick:</span>
+				<div class="switch">
+           	  	   <input type="checkbox" name="option" id="nick-filter" />
+             	   <label for="option"><span></span></label>
+				</div>
+			</div>  
+
+			<div class="option">
+			<span>ID:</span>
+				<div class="switch">
+           	  	   <input type="checkbox" name="option" id="id-filter" />
+             	   <label for="option"><span></span></label>
+				</div>
+			</div>  
+
+			<div class="option">
+				<span>Player:</span>
+					<div class="switch">
+							<input type="checkbox" name="option" id="game-filter" />
+						<label for="option"><span></span></label>
+					</div>
+			</div> 
+
+			<div class="option">
+				<span>Game:</span>
+					<div class="switch">
+							<input type="checkbox" name="option" id="game-filter" />
+						<label for="option"><span></span></label>
+					</div>
+			</div>  
+
+		</div>
+		
+	</div>
+
+	<div class="section" id="search-result">
+		
+
+
+	</div>
+
+</body>
+<script src="./js/fetch.js"></script>
+<script src="./js/userMethods.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="./js/menu.js"></script>
+<script src="./js/globalJS.js"></script>
+
+</html>

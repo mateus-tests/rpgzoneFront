@@ -1,0 +1,84 @@
+.modal-container {
+	width : 100vw;
+	height : 100vh;
+	position : fixed;
+	background : rgb(0, 0, 4, .6);
+	top : 0px;
+	left : 0px;
+	z-index : 2500;
+	display : none;
+	justify-content : center;
+	align-items : center;
+	animation : modal .3s linear;
+	backdrop-filter: blur(8px);
+}
+
+.modal-content {
+	display : grid;
+	grid-template-columns : 1fr;
+	grid-template-rows : repeat(2, 1fr);
+	width: 500px;
+	height : 200px;
+	background : white;
+	border-radius : 20px;
+	box-shadow : 0 0 100px 0 purple;
+	padding : 20px;
+	grid-gap : 40px;
+}
+.modal-content > div > h1 {
+	font-family: "Press Start 2P", cursive;
+	font-size : 1.3em;
+	text-align: center;
+}
+.modal-content > div > form{
+	display : flex;
+	flex-direction : row;
+	
+}
+.modal-content > div > form > button {
+	flex : 1;
+	height : 50px;
+	border-radius : 20px;
+	border : none;
+	font-family: "Press Start 2P", cursive;
+	color : white;
+	font-weight : bold;
+	font-size : 1.1em;
+	cursor : pointer;
+}
+.modal-content > div > form > button.green-button{
+	background : #32CD32;
+	border-bottom : 10px solid green;
+}
+.modal-content > div > form > button.green-button:hover{
+	border-bottom : 5px solid green;
+}
+.modal-content > div > form > button.red-button{
+	background : #FF6347;
+	border-bottom : 10px solid #FF0000;
+}
+.modal-content > div > form > button.red-button:hover{
+	border-bottom : 5px solid #FF0000;
+}
+.modal-content > div > form > button:first-child{
+	margin-right: 10px;
+}
+
+.show-flex-container {
+	display : flex;
+}
+.hidden-flex-container {
+	display : none;
+}
+
+@keyframes modal{
+	0% {
+		opacity : 0;
+		transform : translate3d(-70px, 0, 0);
+	}
+	50% {
+		opacity : 1,
+		transform : translate3d(0, 0, 0);
+	}
+}
+	

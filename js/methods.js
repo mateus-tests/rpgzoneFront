@@ -45,7 +45,7 @@ const signUp = async () => {
 			"email" : `${data.email}` ,
 			"nickName" : `${data.nickName}`
 		}
-		let response = await Fetch.post("http://localhost:8585/email", body);//link do gitpod
+		let response = await Fetch.post("https://8585-a72acdbc-f06e-4c3f-acba-30b5c61169e7.ws-us02.gitpod.io/email", body);//link do gitpod
 		if(response.status == 200){
 			window.alert('The email was sent successfully, see your inbox');
 			window.location.href = './index.html';

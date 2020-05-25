@@ -79,7 +79,9 @@ Fetch = {
 					if(response.pro == 'True'){
 						window.location.href = './dashboard.html';
 					}
-					window.location.href = "./be-a-pro-request.html";//se o usuário já estiver autenticado ele será redirecionado direto para a página sua dashboard com seu perfil
+					else{
+						window.location.href = "./be-a-pro-request.html";//se o usuário já estiver autenticado ele será redirecionado direto para a página sua dashboard com seu perfil
+					}
 				}
 			})
 			.catch(_ => {

@@ -180,10 +180,12 @@ Fetch = {
 	},
 	
 	put : (url) => {
+		const token = JSON.parse(localStorage.getItem("session")).token;
 		return new Promise( (resolve, reject) => {
 			fetch(url, {
 				headers : {
-					'Content-Type' : 'application/json'
+					'Content-Type' : 'application/json',
+					'Authorization' : 'Bearer ' + token
 				},
 				method: "PUT",
 				mode: "cors",

@@ -97,7 +97,10 @@ const signIn = async () => {
 				if(response.pro == 'True'){
 					window.location.href = "./dashboard.html";
 				}
-				window.location.href = "./be-a-pro-request.html";
+				else{
+					window.location.href = "./be-a-pro-request.html";
+				}
+				
 			}
 		}, 1000);
 	})

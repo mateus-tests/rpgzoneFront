@@ -1,8 +1,11 @@
 
 const verifyEmailWasAccept = () => {
 	
-	/*let session = JSON.parse(localStorage.getItem("session"));
-	if(session.userDataSignUp){
+	let session = JSON.parse(localStorage.getItem("session"));
+	if(!session.userDataSignUp){
+		console.log('userDataSignUp IS null');
+	}
+	else{
 		let query = window.location.search.slice(1);
 		let parts = query.split('&');
 		let data = {};
@@ -14,10 +17,10 @@ const verifyEmailWasAccept = () => {
 		});
 		console.log(data.token == session.userDataSignUp.token);
 		if(data.token == session.userDataSignUp.token){
-			
+			signUpApproved();
 		}
 	}
-	console.log(session.userDataSignUp);*/
+	console.log(session.userDataSignUp);
 }
 
 const uuid = () => {
@@ -40,20 +43,19 @@ const signUp = async () => {
 		}
 		session.userDataSignUp = data;
 		localStorage.setItem("session", JSON.stringify(session));
-		/*const body = {
+		const body = {
 			"token" : `${data.token}`,
 			"email" : `${data.email}` ,
 			"nickName" : `${data.nickName}`
 		}
-		let response = await Fetch.post("http://localhost:8585/email", body);//link do gitpod
+		let response = await Fetch.post("https://api-mercadopago-integration.herokuapp.com/email", body);//link do gitpod
 		if(response.status == 200){
 			window.alert('The email was sent successfully, see your inbox');
 			window.location.href = './index.html';
 		}
 		else{
 			window.alert('Error sending the e-mail');
-		}*/
-		signUpApproved();
+		}
 	}
 }
 

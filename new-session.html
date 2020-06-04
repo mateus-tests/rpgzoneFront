@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="./css/features/buttons.css">
 </head>
 
-<body style="background: #3c4246;">
+<body onload="loadNewSession()" style="background: #3c4246;">
 	<div id="header">
 		<img id="logo" src="./assets/logo.png">
 		<i class="menu-open fas fa-bars"></i>
@@ -26,16 +26,16 @@
 	<div class="dates" id="new-session-dates">
 		<div class="section">
 			<h1>New Session</h1>
-			<form>
+			<form id="new-session-form">
 			<div class="dates-fields" id="session-dates-fields">
 				<h5 style="text-align:center;padding:5%;font-family: 'Press Start 2P', cursive;font-size: 1.5em;color:#fff">Session Date:</h5>
-				<input type="text" name="session-date" placeholder="00/00/0000" onkeyup="mascara('##/##/####',this,event,true)" required="required" />
+				<input type="date" name="session-date" placeholder="00/00/0000" onkeyup="mascara('##/##/####',this,event,true)" required="required" />
 				<h5 style="text-align:center;padding:5%;font-family: 'Press Start 2P', cursive;font-size: 1.5em;color:#fff">Session Local:</h5>
 				<input type="text" name="session-city" placeholder="City" required="required" /><br>
-				<input type="text" name="session-neighborhood" placeholder="Neighborhood" required="required" /><br>
+				<input type="text" name="session-country" placeholder="Country" required="required" /><br>
 				<input type="text" name="session-street" placeholder="Sreet" required="required" /><br>
-				<input type="text" name="session-number" placeholder="Number" required="required" /><br>
-				<input type="text" name="session-zipcode" placeholder="Zipcode" required="required" /><br>
+				<input type="number" name="session-number" placeholder="Number" required="required" /><br>
+				<input type="number" name="session-zipcode" placeholder="Zipcode" required="required" /><br>
 			</div>
 				<div class="buttons-field">
                     <button type="submit" class="btn-yes btn-yes-primary btn-yes-large">Add</button>

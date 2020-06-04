@@ -70,18 +70,12 @@ Fetch = {
 				method: "GET",
 				mode: "cors"
 			})
-			.then( async resp => {
+			.then( resp => {
 				if(resp.status == 404){
 					window.location.href = "./404.html";
 				}
 				if(resp.status === 200 || resp.status === 204 || resp.status === 203 || resp.status === 202 || resp.status === 201){
-					const response = await Fetch.getAuth('http://localhost:9090/account');
-					if(response.pro == 'True'){
-						window.location.href = './dashboard.html';
-					}
-					else{
-						window.location.href = "./be-a-pro-request.html";//se o usuário já estiver autenticado ele será redirecionado direto para a página sua dashboard com seu perfil
-					}
+					window.location.href = "./be-a-pro-request.html";//se o usuário já estiver autenticado ele será redirecionado direto para a página sua dashboard com seu perfil
 				}
 			})
 			.catch(_ => {
@@ -186,12 +180,10 @@ Fetch = {
 	},
 	
 	put : (url) => {
-		const token = JSON.parse(localStorage.getItem("session")).token;
 		return new Promise( (resolve, reject) => {
 			fetch(url, {
 				headers : {
-					'Content-Type' : 'application/json',
-					'Authorization' : 'Bearer ' + token
+					'Content-Type' : 'application/json'
 				},
 				method: "PUT",
 				mode: "cors",

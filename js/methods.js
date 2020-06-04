@@ -40,13 +40,12 @@ const signUp = async () => {
 		}
 		session.userDataSignUp = data;
 		localStorage.setItem("session", JSON.stringify(session));
-		signUpApproved();
 		/*const body = {
 			"token" : `${data.token}`,
 			"email" : `${data.email}` ,
 			"nickName" : `${data.nickName}`
 		}
-		let response = await Fetch.post("https://8585-a72acdbc-f06e-4c3f-acba-30b5c61169e7.ws-us02.gitpod.io/email", body);//link do gitpod
+		let response = await Fetch.post("http://localhost:8585/email", body);//link do gitpod
 		if(response.status == 200){
 			window.alert('The email was sent successfully, see your inbox');
 			window.location.href = './index.html';
@@ -54,6 +53,7 @@ const signUp = async () => {
 		else{
 			window.alert('Error sending the e-mail');
 		}*/
+		signUpApproved();
 	}
 }
 
@@ -97,10 +97,7 @@ const signIn = async () => {
 				if(response.pro == 'True'){
 					window.location.href = "./dashboard.html";
 				}
-				else{
-					window.location.href = "./be-a-pro-request.html";
-				}
-				
+				window.location.href = "./be-a-pro-request.html";
 			}
 		}, 1000);
 	})

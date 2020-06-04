@@ -142,3 +142,9 @@ button:focus{
     backdrop-filter: blur(7px);
     box-shadow: 2px 2px 5px rgba(0,0,0,.5);
 }
+
+.blur-orange-dark{
+    background: rgba(255, 140, 0, 0.7);
+    backdrop-filter: blur(7px);
+    box-shadow: 2px 2px 5px rgba(0,0,0,.5);
+}

@@ -14,24 +14,39 @@ const loadUser = async () => {
 		window.alert("Error");
 	}
 	totalPlayers();
-	loadMyInvites();	
+	loadMyInvites();
+	loadMyNotifications(res.notificationsDTO);
 }
 
 const userDecision = async e => {
 	const props = JSON.parse(e.target.value);
+	
+	let response;
 	if(props.accept){
-		const response = await Fetch.postAuthWithoutResponse(`http://localhost:9090/rooms/${props.roomID}`);
-		if(response.status === 204){
-			window.alert('You accepted this invite');
+		if(!props.session){
+			response = await Fetch.postAuthWithoutResponse(`http://localhost:9090/rooms/${props.roomID}`);
+			if(response.status === 204){
+					window.alert('You accepted this invite');
+			} else{ window.alert('Error while you was tried entrance into this room'); } 
 		}
-		else{
-			window.alert('Error while you was tried entrance into this room');
+		else {
+			
+			response = await Fetch.postAuth(`http://localhost:9090/session/${props.roomID}`, session);
+			if(!response.country){
+				window.alert('Error while you was tried create a new session');
+			} else{ window.alert('You have accepted the request to create a new session '); } 
 		}
+		
 	}
-	const inviteDeleted = await Fetch.deleteAuth(`http://localhost:9090/user/invites/${props.roomID}`);
+	
+	const inviteDeleted = 	(!props.session) ? 
+							await Fetch.deleteAuth(`http://localhost:9090/user/invites/${props.roomID}`) :
+							await Fetch.deleteAuth(`http://localhost:9090/user/invites/session/${session.sessionID}`);
 	loadMyInvites();
 	
 }
+
+let session;
 
 const loadMyInvites = async () => {
 	let col2 = document.querySelector('.col-2');
@@ -39,20 +54,33 @@ const loadMyInvites = async () => {
 	
 	const res = await Fetch.getAuth('http://localhost:9090/user/invites');
 	if(res.length === 0) { col2.innerHTML = ''; } else {
-		res.forEach( async room => {
+		res.forEach( async invite => {
 			const roomDetails = await Fetch.getAuth('http://localhost:9090/rooms');
 			if(roomDetails){
 				roomDetails.forEach( roomDetail => {
-					if(room.roomID == roomDetail.roomID){
-						content += `
-										<div class="section blur-purple-dark">
-											<div class="invites">
-												<span>Room nick -> ${roomDetail.roomNick}</span></br>
-												<button value=${ JSON.stringify({ accept : true , roomID : roomDetail.roomID }) }  class="accept-or-refuse">Accept</button>
-												<button value=${ JSON.stringify({ accept : false , roomID : roomDetail.roomID }) } class="accept-or-refuse">Refuse</button>
+					if(invite.roomID == roomDetail.roomID){
+						if(!invite.session){//se não é um convite de nova sessão então é um convite para entrar em uma sala
+							content += `
+											<div class="section blur-purple-dark">
+												<div class="invites">
+													<span>Room nick -> ${roomDetail.roomNick}</span></br>
+													<button value=${ JSON.stringify({ accept : true , roomID : roomDetail.roomID }) }  class="accept-or-refuse">Accept</button>
+													<button value=${ JSON.stringify({ accept : false , roomID : roomDetail.roomID }) } class="accept-or-refuse">Refuse</button>
+												</div>
 											</div>
-										</div>
-						`;
+							`;
+						} else {
+							session = invite.session;
+							content += `
+											<div class="section blur-orange-dark">
+												<div class="invites">
+													<span>Request for inclusion of a new session in Room nick -> ${roomDetail.roomNick}</span></br>
+													<button value=${ JSON.stringify({ accept : true , roomID : roomDetail.roomID, session : 'true'  }) }  class="accept-or-refuse">Allow</button>
+													<button value=${ JSON.stringify({ accept : false , roomID : roomDetail.roomID, session : 'true' }) } class="accept-or-refuse">Reject</button>
+												</div>
+											</div>
+							`;
+						}
 					}
 				});
 				
@@ -66,6 +94,32 @@ const loadMyInvites = async () => {
 			}
 		});
 	}
+}
+
+const destroyNotification = async notificationID => {
+	const response = await Fetch.deleteAuth(`http://localhost:9090/user/notification/${notificationID}`);
+	console.log(response);
+	loadMyNotifications(response);
+}
+
+const loadMyNotifications = (res) => {
+	let content = '';
+	let col3 = document.querySelector('.col-3');
+	console.log(res);
+	if(res.length === 0) { col3.innerHTML = ''; } else{
+		res.forEach( notification => {
+			content += `
+							<div class="section blur-purple-dark">
+								<div class="notifications">
+									<span>Room nick -> ${notification.message}</span></br>
+									<button onclick="destroyNotification('${notification.notificationID}')" class="destroy-button">Destroy</button>
+								</div>
+							</div>
+			`;
+		});
+		col3.innerHTML = content;
+	}
+	
 }
 
 const totalPlayers = async () => {
@@ -260,6 +314,9 @@ const searchExec = myRooms => {
 }
 
 const enterInThisRoom = roomID => {
+	let session = JSON.parse(localStorage.getItem('session'));
+	session.roomID = roomID;
+	localStorage.setItem('session', JSON.stringify(session));
 	window.location.href = "./room.html";
 }
 
@@ -423,4 +480,59 @@ const searchPlayer = async () => {
 		loadAllUsers();
 	}
 	
+}
+
+const verifyIfDateIsValid = (date) => {
+	let currentDate = new Date();
+	
+	let parts = date.split('-');
+	if(	parts[0] < currentDate.getFullYear() ||
+		parts[0] == currentDate.getFullYear() && (parts[1] - 1) < currentDate.getMonth() ||
+		parts[0] == currentDate.getFullYear() && (parts[1] - 1) == currentDate.getMonth() && parts[2] < currentDate.getDate()  
+	) return false;
+	
+	return true;
+	
+}
+const verifyZipCode = (zipCodeInput) => {
+	let value = zipCodeInput.target.value;
+	if( value.length >= 9){
+		document.getElementsByName('session-zipcode')[0].value =  value.substring(0, 8);
+	}
+}
+
+const createNewSession = async (e) => { 
+	e.preventDefault();
+	let session = JSON.parse(localStorage.getItem('session'));
+	let city = document.getElementsByName('session-city')[0].value;
+	let date = document.getElementsByName('session-date')[0].value;
+	let zipCode = document.getElementsByName('session-zipcode')[0].value;
+	let street = document.getElementsByName('session-street')[0].value;
+	let number = document.getElementsByName('session-number')[0].value;
+	let country = document.getElementsByName('session-country')[0].value;
+	let parts = date.split('-');
+	if(verifyIfDateIsValid(date)){
+		const data = {
+			"brazilianDate": {
+				"ano": Number(parts[0]),
+				"mes": Number(parts[1]),
+				"dia": Number(parts[2])
+			},
+			"street": street,
+			"zipCode": zipCode,
+			"country": country
+		}
+		const response = await Fetch.postAuth(`http://localhost:9090/session/${session.roomID}`, data);
+	}
+	else{
+		console.log('Date invalid');
+	}
+	
+	document.querySelector('#new-session-dates').innerHTML = `<div><span>Deu certo</span></div>` 
+}
+
+const loadNewSession = () => {
+	document.getElementsByName('session-zipcode')[0].addEventListener('change', verifyZipCode, false);
+	document.getElementsByName('session-zipcode')[0].addEventListener('keyup', verifyZipCode, false);
+	document.querySelector('#new-session-form').addEventListener('submit', e => { createNewSession(e); }, false);
 }

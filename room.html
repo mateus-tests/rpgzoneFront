@@ -6,6 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Room Inside</title>
+	<link rel="stylesheet" type="text/css" href="./css/newRoom.css">
 	<link rel="stylesheet" type="text/css" href="./css/room.css">
 	<link rel="stylesheet" type="text/css" href="./css/global.css">
 	<link rel="stylesheet" type="text/css" href="./css/fontawesome/css/all.css">
@@ -13,10 +14,9 @@
 	<link rel="stylesheet" type="text/css" href="./css/features/switch.css">
 	<link rel="stylesheet" type="text/css" href="./css/features/buttons.css">
 
-
 </head>
 
-<body>
+<body onload="loadRoom();" >
 	<div id="header">
 		<img id="logo" src="./assets/logo.png">
 		<i class="menu-open fas fa-bars"></i>
@@ -61,7 +61,7 @@
 			<div class="sidebar" id="users">
 				<h5>Players:</h5>
 				<ul id="players-list">
-					<li><a href="" class="nickname">Nome</a></li>
+					<li><a href="#" class="nickname">Nome</a></li>
 				</ul>
 			</div>
 		</div>
@@ -72,7 +72,7 @@
 				<!-- Dynamic PDF-->
 				<object style="display: none;" id="object-pdf" data="" type="application/pdf"><embed id="embed-pdf" src="" type="application/pdf" /></object>
 				<!-- Dynamic URL-->
-				<iframe id="embed-url" sandbox="allow-same-origin allow-scripts allow-forms" scrolling="no" src="../html/info.html"></iframe>
+				<iframe id="embed-url" sandbox="allow-same-origin allow-scripts allow-forms" scrolling="no" src="./info.html"></iframe>
 			</div>
 		</div>
 		<!-- Column 3-->
@@ -82,10 +82,10 @@
 			<div class="row-1">
 				<div class="map">
 					<div class="map-container">
-						<div id="reload" onclick="refreshMap('Brazil','08226-021','Rua 18 de Abril');" class="reload">
+						<!-- <div id="reload" onclick="refreshMap('Brazil','08226-021','Rua 18 de Abril');" class="reload">
 							<i class="fas fa-redo"></i>
 							<span>Click to load your map!</span>
-						</div>
+						</div> -->
 						<div id="myMap" style="height: 100%s;width:100%;"></div>
 					</div>
 				</div>
@@ -96,30 +96,49 @@
 				<div class="sessions">
 					<div class="next-sessions-container">
 						<h5>Next Sessions:</h5>
-						<div id="next-sessions" style="position:relative;width:100%;"></div>
+						<div id="next-sessions">
+							
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- Modal -->
+	<div class="modal-container hidden-flex-container" id="background-pop-up" >
+		<div class="modal-content modal-container-edit-date">
+			<div>
+				<h1>Enter a new session date</h1>
+			</div>
+			<div>
+				<form>
+					<div>
+						<input id="edit-date-input" type="text" placeholder="dd/mm/yyyy"/>
+					</div>
+					<div>
+						<button value="cancel" type="submit" class="btn-no btn-no-primary btn-no-large response-modal">Cancel</button>
+						<button value="done" type="submit" class="btn-yes btn-yes-primary btn-yes-large response-modal">Done</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
 
-<style>
-	#header {
-    background-color: rgba(90, 10, 63);}
-</style>	
+	<style>
+		#header {
+			background-color: rgba(90, 10, 63);
+		}
+	</style>
 </body>
-<script src="./js/fetch.js"></script>
-<script src="./js/userMethods.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="./js/menu.js"></script>
-<script src="./js/globalJS.js"></script>
-<script src="./js/roomJS.js"></script>
+<script src = "./js/fetch.js"></script>
+<script src = "./js/userMethods.js"></script>
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src = "./js/menu.js"></script>
+<script src = "./js/globalJS.js"></script>
+<script src = "./js/roomJS.js"></script>
 
-<!-- Mapa-->
-<script
-	src="https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AnzqHklo_lvZR_czqcvXPo-hrYNQ6qElpbIAOWL0U6fgDrJxdvdKazPtBPlFklpu"
-	async defer>
-</script>
-
+<!-- Mapa
+<script src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AnzqHklo_lvZR_czqcvXPo-hrYNQ6qElpbIAOWL0U6fgDrJxdvdKazPtBPlFklpu' async defer></script>
+-->
 </html>

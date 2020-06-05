@@ -177,18 +177,6 @@ const loadRoom = async () => {
 	
 }
 
-/*const verifyIfDateIsValid = (date) => {
-	let currentDate = new Date();
-	
-	let parts = date.split('-');
-	if(	parts[0] < currentDate.getFullYear() ||
-		parts[0] == currentDate.getFullYear() && (parts[1] - 1) < currentDate.getMonth() ||
-		parts[0] == currentDate.getFullYear() && (parts[1] - 1) == currentDate.getMonth() && parts[2] < currentDate.getDate()  
-	) return false;
-	
-	return true;
-	
-}*/
 
 const requestEditing = async (props) => {
 	let value = document.getElementById('edit-date-input').value;

@@ -119,7 +119,9 @@ const createRoom = () => {
 	
 	Fetch.postAuth("http://localhost:9090/rooms", data)
 	.then( resp => {
-		console.log(resp);
+		let session = JSON.parse( localStorage.getItem('session') );
+		session.roomID = resp.roomID;
+		localStorage.setItem('session', JSON.stringify(session));
 		popUp.classList.remove("hidden-flex-container");
 		popUp.classList.add("show-flex-container");
 		popUp.addEventListener('click', (e) => {

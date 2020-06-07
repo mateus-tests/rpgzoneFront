@@ -2,7 +2,7 @@ const setPro = async () => {
 	let response = await Fetch.getAuth('http://localhost:9090/account');
 	if(response){
 		if(response.pro == 'False'){
-			await Fetch.put('http://localhost:9090/user/rank/pro');
+			await Fetch.putAuth('http://localhost:9090/user/rank/pro', {"success":"200"});
 			let verifyPro = await Fetch.getAuth('http://localhost:9090/account');
 			console.log(verifyPro.pro);
 		}

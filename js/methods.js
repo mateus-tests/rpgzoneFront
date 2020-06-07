@@ -56,6 +56,7 @@ const signUp = async () => {
 		else{
 			window.alert('Error sending the e-mail');
 		}
+		signUpApproved();
 	}
 }
 
@@ -121,7 +122,8 @@ const createRoom = () => {
 	.then( resp => {
 		let session = JSON.parse( localStorage.getItem('session') );
 		session.roomID = resp.roomID;
-		localStorage.setItem('session', JSON.stringify(session));
+		console.log(session.roomID);
+		localStorage.setItem("session", JSON.stringify(session));
 		popUp.classList.remove("hidden-flex-container");
 		popUp.classList.add("show-flex-container");
 		popUp.addEventListener('click', (e) => {

@@ -72,6 +72,10 @@ button:focus{
     transition: background-position 0.1s linear;
 }
 
+.pointer {
+	cursor : pointer;
+}
+
 .btn-primary,
 .btn-primary:hover {
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);

@@ -6,16 +6,21 @@
     <link rel="stylesheet" type="text/css" href="./css/be-a-pro.css">
     <link rel="stylesheet" type="text/css" href="./css/global.css">
 	<script type="text/javascript" src="./js/globalJS.js"></script>
-    <title>Be a PRO!</title>
+    <title>Be a PRO success!</title>
 </head>
 <body id="body" style="overflow: hidden;" onload="setPro()">
     <div id="header">
         <img id="logo" src="./assets/logo.png">
      </div>
-    <span id="slogan">GET SUPER POWERS!</span>
+    <span class="pointer" id="slogan" onclick="goDash()">Go Dashboard!</span>
     <div style="height: 200px;" class="request">
         <h1 style="font-size : 1.3em;" >Congratulations young Padawan now you are user Pro!</h1>
     </div>
+	<script>
+		function goDash(){
+			window.location.href = './dashboard.html';
+		}
+	</script>
 	<script src="./js/userMethods.js"></script>
 	<script src="./js/fetch.js"></script>
 	<script src="./js/be-a-pro-success.js"></script>

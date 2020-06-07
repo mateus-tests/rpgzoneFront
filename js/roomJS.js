@@ -86,7 +86,7 @@ const getCoords = async (country, zipcode, street) => {
 	street = street.replace(" ","");
 	zipcode = zipcode.replace("-","");
 	console.log(country, zipcode, street);
-    const requestURL = "http://dev.virtualearth.net/REST/v1/Locations?countryRegion="+country+"&postalCode="+zipcode+"&addressLine="+street+"&key=AnzqHklo_lvZR_czqcvXPo-hrYNQ6qElpbIAOWL0U6fgDrJxdvdKazPtBPlFklpu";
+    const requestURL = "https://dev.virtualearth.net/REST/v1/Locations?countryRegion="+country+"&postalCode="+zipcode+"&addressLine="+street+"&key=AnzqHklo_lvZR_czqcvXPo-hrYNQ6qElpbIAOWL0U6fgDrJxdvdKazPtBPlFklpu";
     console.log(requestURL);
 	const response = await Fetch.get(requestURL);
     const lat = response.resourceSets[0].resources[0].bbox[0];

@@ -19,16 +19,19 @@ document.querySelectorAll('.fab ul li button').forEach((item) => {
 /*Embed features */
 /* URL */
 function refreshURL(source){
-    var iframe = document.getElementById('embed-url');
+    let iframe = document.getElementById('embed-url');
     iframe.src = source;
     document.getElementById('embed-url').style.display = 'block';
     document.getElementById('object-pdf').style.display = 'none';
     document.getElementById('embed-pdf').style.display = 'none';
 }
 /* PDF */
-function refreshPDF(source){
-    var object = document.getElementById('object-pdf');
-    var embed = document.getElementById('embed-pdf');
+async function refreshPDF(){
+    let object = document.getElementById('object-pdf');
+	let embed = document.getElementById('embed-pdf');
+	let session = JSON.parse(localStorage.getItem('session'));
+	let response = await Fetch.getAuth(`http://localhost:9090/rooms/${session.roomID}`);
+	source = response.roomConfig.game.pdfGuide;
     object.data = source;
     embed.src = source;
     document.getElementById("embed-pdf").style.display = 'block';
@@ -77,9 +80,12 @@ function createPushpin(location, props, callback) {
 
 /* OBTER COORDENADAS */
 
+
+
 const getCoords = async (country, zipcode, street) => {
-	street = street.replace(" ","");
-    zipcode = zipcode.replace("-","");
+	//street = street.replace(" ","");
+	//zipcode = zipcode.replace("-","");
+	console.log(country, zipcode, street);
     const requestURL = "http://dev.virtualearth.net/REST/v1/Locations?countryRegion="+country+"&postalCode="+zipcode+"&addressLine="+street+"&key=AnzqHklo_lvZR_czqcvXPo-hrYNQ6qElpbIAOWL0U6fgDrJxdvdKazPtBPlFklpu";
     console.log(requestURL);
 	const response = await Fetch.get(requestURL);
@@ -91,9 +97,26 @@ const getCoords = async (country, zipcode, street) => {
 	}
 }
 
-const refreshMap = async (country,zipcode,street) => {
+const refreshMap = async () => {
+	let sessions = JSON.parse(localStorage.getItem('session'));
+	let street;
+	let country;
+	let zipcode;
+	console.log(sessions.roomID);
+	let response = await Fetch.getAuth(`http://localhost:9090/session/sort/${sessions.roomID}`);
+	if(response.length === 0){
+		street = "Rua 18 de Abril";
+		country = "Brazil";
+		zipcode = "08226021";
+	}
+	else {
+		/*sessão mais recente*/
+		street = response[0].street;
+		country = response[0].country;
+		zipcode = response[0].zipCode;
+	}
 	const { latitude, longitude } = await getCoords(country, zipcode, street);
-	console.log(latitude, longitude);
+	document.getElementById('reload').style.display = 'none';
 	GetMap(latitude,longitude);
 }
 
@@ -143,12 +166,7 @@ const loadSessions = async (roomID) => {
 									Country : ${session.country}
 								</h2>
 								<span>
-									Street : ${session.street}
-								</span>
-							</div>
-							<div>
-								<span>
-									ID : ${session.sessionID}
+									Street : ${session.street} <br> ID : ${session.sessionID}
 								</span>
 							</div>
 							
@@ -198,7 +216,7 @@ const requestEditing = async (props) => {
 	}
 	
 	const response = await Fetch.putAuth(`http://localhost:9090/session/${props.roomID}/${props.sessionID}`, data);
-	
+
 	return response;
 	
 	

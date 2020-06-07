@@ -103,7 +103,6 @@ body {
 	text-align : center;
 }
 
-
 .game-image {
     width: auto;
     height: 200px;
@@ -133,7 +132,8 @@ h1{
     font-family: 'Press Start 2P', cursive;
     font-size: 1.5em;
     text-align: center;
-    margin:3%;
+	margin:3%;
+	text-shadow: 2px 2px 2px rgba(0,0,0,.7);
 }
 
 .button-ready{

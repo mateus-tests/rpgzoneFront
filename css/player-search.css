@@ -2,14 +2,19 @@
     background: rgba(90, 10, 63);
     
 }
-.room {
+button.room-submit {
     text-align: center;
     background: -webkit-linear-gradient(top, #ffa201, #ff5500);
     padding: 5px;
     border-radius: 8px;
     padding: 2%;
-    margin:1%;
+    margin:1%;    
+    display: block;
+    width: 100%;
+    border: none;
+    cursor: pointer;
 }
+
 .room:hover{
     background: -webkit-linear-gradient(top, #ff8001, #ff5500);
 }

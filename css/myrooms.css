@@ -3,6 +3,7 @@ h1 {
 	color: rgb(255, 255, 255);
 	text-align: center;
 	display: block;
+	text-shadow: 2px 2px 2px rgba(0,0,0,.7);
 }
 
 .rooms-result {
@@ -16,7 +17,7 @@ h1 {
 }
 
 .rooms-result > div {
-    flex: 1;
+    flex: auto;
 	height: 100%;
 	color: rgb(255, 255, 255);
 	font-family: ;

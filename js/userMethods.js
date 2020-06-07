@@ -49,7 +49,7 @@ const userDecision = async e => {
 let session;
 
 const loadMyInvites = async () => {
-	let col2 = document.querySelector('.col-2');
+	let col2 = document.querySelector('.requests-room-body');
 	let content = '';
 	
 	const res = await Fetch.getAuth('http://localhost:9090/user/invites');
@@ -61,22 +61,22 @@ const loadMyInvites = async () => {
 					if(invite.roomID == roomDetail.roomID){
 						if(!invite.session){//se não é um convite de nova sessão então é um convite para entrar em uma sala
 							content += `
-											<div class="section blur-purple-dark">
+											<div class="">
 												<div class="invites">
-													<span>Room nick -> ${roomDetail.roomNick}</span></br>
-													<button value=${ JSON.stringify({ accept : true , roomID : roomDetail.roomID }) }  class="accept-or-refuse">Accept</button>
-													<button value=${ JSON.stringify({ accept : false , roomID : roomDetail.roomID }) } class="accept-or-refuse">Refuse</button>
+													<span>New request to join ☛ "${roomDetail.roomNick}"</span></br>
+													<button value=${ JSON.stringify({ accept : true , roomID : roomDetail.roomID }) }  class="accept-or-refuse btn-yes btn-yes-primary btn-yes-large">Accept</button>
+													<button value=${ JSON.stringify({ accept : false , roomID : roomDetail.roomID }) } class="accept-or-refuse btn-no btn-no-primary btn-no-large">Refuse</button>
 												</div>
 											</div>
 							`;
 						} else {
 							session = invite.session;
 							content += `
-											<div class="section blur-orange-dark">
+											<div class="invites">
 												<div class="invites">
-													<span>Request for inclusion of a new session in Room nick -> ${roomDetail.roomNick}</span></br>
-													<button value=${ JSON.stringify({ accept : true , roomID : roomDetail.roomID, session : 'true'  }) }  class="accept-or-refuse">Allow</button>
-													<button value=${ JSON.stringify({ accept : false , roomID : roomDetail.roomID, session : 'true' }) } class="accept-or-refuse">Reject</button>
+													<span>New request to this session ☛ "${roomDetail.roomNick}"</span></br>
+													<button value=${ JSON.stringify({ accept : true , roomID : roomDetail.roomID, session : 'true'  }) }  class="accept-or-refuse btn-yes btn-yes-primary btn-yes-large">Allow</button>
+													<button value=${ JSON.stringify({ accept : false , roomID : roomDetail.roomID, session : 'true' }) } class="accept-or-refuse btn-no btn-no-primary btn-no-large">Reject</button>
 												</div>
 											</div>
 							`;
@@ -104,20 +104,18 @@ const destroyNotification = async notificationID => {
 
 const loadMyNotifications = (res) => {
 	let content = '';
-	let col3 = document.querySelector('.col-3');
+	let notificationCenter = document.querySelector('.notification-center-body');
 	console.log(res);
-	if(res.length === 0) { col3.innerHTML = ''; } else{
+	if(res.length === 0) { notificationCenter.innerHTML = '<span>0 notifications!</span>'; } else{
 		res.forEach( notification => {
 			content += `
-							<div class="section blur-purple-dark">
 								<div class="notifications">
-									<span>Room nick -> ${notification.message}</span></br>
-									<button onclick="destroyNotification('${notification.notificationID}')" class="destroy-button">Destroy</button>
+									<span>${notification.message}</span></br>
+									<button onclick="destroyNotification('${notification.notificationID}')" class="btn btn-primary btn-large">Destroy</button>
 								</div>
-							</div>
 			`;
 		});
-		col3.innerHTML = content;
+		notificationCenter.innerHTML += content;
 	}
 	
 }
@@ -399,15 +397,14 @@ const loadAvailableRooms = async (userID) => {
 	if(response){
 		response.forEach( room => {
 			content += `
-						<div class="room" >
+						<button value=${ JSON.stringify({userID : userID, roomID : room.roomID})} class="room-submit" >
 							<div class="room-id-label">
 								<span class="room-id-label">ID: </span><span class="room-id">${room.roomID}</span>
 							</div>
 							<div class="room-nick">
 								<span class="room-nick">${room.roomNick}</span>
-								<button value=${ JSON.stringify({userID : userID, roomID : room.roomID}) } class="room-submit">Add User in this room</button>
 							</div>
-						</div>
+						</button>
 			`;
 		});
 	}
@@ -457,7 +454,7 @@ const searchPlayer = async () => {
 		let content = '';
 		if(response){
 			response.forEach( user => {
-				if(clearString(user.nickName).toUpperCase() === textInputValue){
+				if(clearString(user.nickName).toUpperCase() === textInputValue || clearString(user.email).toUpperCase() === textInputValue ){
 					content += `
 								<div class="player">
 									<span class="nick-label label">Nick: </span><span class="nick">${user.nickName}</span><br>

@@ -7,7 +7,7 @@ const loadNewRoomOptions = async () => {
 	response.games.forEach( game => {
 		content += `
 					<div  class="game-body">
-						<img src='${game.gameImage}' class="game-image"/>
+						<img src='assets/rpgdb/thumb/${game.gameImage}' class="game-image"/>
 						<div class="game-info">
 							<span class="info">Title: </span><h5 class="game-title">${game.title}</h5><br>
 							<span class="info">Year: </span><span class="game-year-release">${game.year}</span><br>
